@@ -2,6 +2,10 @@
 
 This script is a **Prometheus exporter** that collects performance and connection metrics from multiple ASG (Application Security Gateway) devices over SSH and exposes them via an HTTP `/metrics` endpoint.
 
+It allows you, among other views to, have a memory and cpu heatmap of multiple members in a security group in Grafana.
+
+![Memory Heat Map](memoryHeatMap.png)
+
 It parses the output of `asg perf -v -p` and `asg_conns` commands from each configured ASG, structures the metrics, and exposes them in a Prometheus-compatible format for scraping.
 
 ## Features
