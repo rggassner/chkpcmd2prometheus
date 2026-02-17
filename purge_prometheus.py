@@ -1,12 +1,4 @@
 #!/bin/bash
-#for metric in $(curl -s http://localhost:9090/api/v1/label/__name__/values | jq -r '.data[]')
-#do
-#     echo "Deleting $metric"
-#     curl -X POST http://localhost:9090/api/v1/admin/tsdb/delete_series        -d "match[]=$metric"        -d "end=2025-05-29T23:59:59Z"
-#done
-#curl -X POST 'http://localhost:9090/api/v1/admin/tsdb/clean_tombstones'
-
-#!/bin/bash
 # Calculate the date two weeks ago in the required format (YYYY-MM-DDTHH:MM:SSZ)
 # Using `date` command for flexibility.
 # This calculates two weeks ago from the current date and sets the time to 23:59:59Z
@@ -27,6 +19,11 @@ declare -a EXCLUDED_METRICS=(
 	"c2p_asg_perf_summary_packet_rate"
 	"c2p_asg_perf_summary_throughput"
 	"cluster_cli_show_info_performance_total_throughput"
+	"cluster_cli_show_info_performance_total_concurrent_connections"
+	"cluster_cli_show_info_performance_total_connection_rate"
+	"cluster_cli_show_info_performance_total_cpu_usage"
+	"cluster_cli_show_info_performance_total_memory_usage"
+	"cluster_cli_show_info_performance_total_packet_rate"
 )
 
 # Fetch all metric names
@@ -54,5 +51,4 @@ echo "Cleaning tombstones..."
 curl -X POST 'http://localhost:9090/api/v1/admin/tsdb/clean_tombstones'
 
 echo "Purge script finished."
-
 
