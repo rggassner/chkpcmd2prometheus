@@ -1,1 +1,1 @@
-ip,user,password,name,cmdb_name
+ip,user,password,name,cmdb_name,version(pre82 or 82)
