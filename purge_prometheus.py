@@ -9,21 +9,23 @@ echo "Purging metrics older than: $END_DATE"
 # Define a list of metrics to *exclude* from purging
 # These metrics will be skipped during the deletion process.
 declare -a EXCLUDED_METRICS=(
-	"c2p_asg_perf_summary_concurrent_connections"
-	"c2p_asg_perf_summary_connection_rate"
-	"c2p_asg_perf_summary_instances_load_avg"
-	"c2p_asg_perf_summary_instances_load_max"
-	"c2p_asg_perf_summary_instances_load_min"
-	"c2p_asg_perf_summary_load_average"
-	"c2p_asg_perf_summary_memory_usage"
-	"c2p_asg_perf_summary_packet_rate"
-	"c2p_asg_perf_summary_throughput"
-	"cluster_cli_show_info_performance_total_throughput"
-	"cluster_cli_show_info_performance_total_concurrent_connections"
-	"cluster_cli_show_info_performance_total_connection_rate"
-	"cluster_cli_show_info_performance_total_cpu_usage"
-	"cluster_cli_show_info_performance_total_memory_usage"
-	"cluster_cli_show_info_performance_total_packet_rate"
+        "c2p_asg_perf_summary_concurrent_connections"
+        "c2p_asg_perf_summary_connection_rate"
+        "c2p_asg_perf_summary_instances_load_avg"
+        "c2p_asg_perf_summary_instances_load_max"
+        "c2p_asg_perf_summary_instances_load_min"
+        "c2p_asg_perf_summary_load_average"
+        "c2p_asg_perf_summary_memory_usage"
+        "c2p_asg_perf_summary_packet_rate"
+        "c2p_asg_perf_summary_throughput"
+        "cluster_cli_show_info_performance_total_throughput"
+        "cluster_cli_show_info_performance_total_concurrent_connections"
+        "cluster_cli_show_info_performance_total_connection_rate"
+        "cluster_cli_show_info_performance_total_cpu_usage"
+        "cluster_cli_show_info_performance_total_memory_usage"
+        "cluster_cli_show_info_performance_total_packet_rate"
+        "c2p_asg_status_sgms_active"
+        "c2p_asg_status_sgms_total"
 )
 
 # Fetch all metric names
@@ -51,4 +53,3 @@ echo "Cleaning tombstones..."
 curl -X POST 'http://localhost:9090/api/v1/admin/tsdb/clean_tombstones'
 
 echo "Purge script finished."
-
